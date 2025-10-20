@@ -1,0 +1,3 @@
+- [x] Update technologies array in src/constants/index.js with Flutter-related technologies (Dart, Flutter, Firebase, etc.)
+- [x] Update projects array in src/constants/index.js with Flutter-based projects (Mohtadi, real estate app, Streamix, etc.)
+- [x] Add Gemini API key: obFMlhoS6RnnDUgjf
