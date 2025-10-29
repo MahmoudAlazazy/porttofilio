@@ -9,7 +9,26 @@ const Earth = () => {
   useEffect(() => {
     earth.scene.traverse((child) => {
       if (child.isMesh) {
-        child.geometry?.center();
+        // Check if geometry exists and has valid positions before centering
+        if (child.geometry) {
+          const positionAttribute = child.geometry.attributes.position;
+          if (positionAttribute) {
+            // Check for NaN values in the position attribute
+            let hasNaN = false;
+            for (let i = 0; i < positionAttribute.count * 3; i++) {
+              if (isNaN(positionAttribute.array[i])) {
+                hasNaN = true;
+                break;
+              }
+            }
+            
+            if (!hasNaN) {
+              child.geometry.center();
+            } else {
+              console.warn('Skipping centering due to NaN values in geometry');
+            }
+          }
+        }
       }
     });
   }, [earth]);
@@ -18,7 +37,7 @@ const Earth = () => {
     <mesh>
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 5, 5]} intensity={1} />
-      <primitive object={earth.scene} scale={2.5} position-y={0} rotation-y = {0} />
+      <primitive object={earth.scene} scale={2.5} position-y={0} rotation-y={0} />
     </mesh>
   );
 };
@@ -29,12 +48,12 @@ const EarthCanvas = () => {
       shadows
       frameloop="demand"
       gl={{ preserveDrawingBuffer: true }}
-      camera={{ position: [-4, 3, 6], fov: 45,near:0.1, far:200, }}
+      camera={{ position: [-4, 3, 6], fov: 45, near: 0.1, far: 200 }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           autoRotate
-         autoRotateSpeed={2}
+          autoRotateSpeed={2}
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
