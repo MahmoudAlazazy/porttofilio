@@ -133,7 +133,7 @@ const experiences = [
     company_name: "NTI Summer Training",
     icon: network, // Using the network icon you added earlier
     iconBg: "#E6DEDD",
-    date: "Summer 2023",
+    date: "Summer 2025",
     points: [
       "Completed intensive training program on network infrastructure fundamentals.",
       "Gained hands-on experience with networking concepts and technologies.",
