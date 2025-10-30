@@ -173,7 +173,7 @@ const experiences = [
     company_name: "DEPI",
     icon: depi, // Or institute logo
     iconBg: "#ffff",
-    date: "Feb 2024 - Oct 2025",
+    date: "Feb 2023 - Oct 2024",
     points: [
       "Completed an intensive training program focused on Flutter and mobile development.",
       "Built multiple cross-platform projects, including apps with authentication and databases.",
